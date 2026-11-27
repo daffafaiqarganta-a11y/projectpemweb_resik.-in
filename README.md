@@ -1,118 +1,210 @@
-# BERSIHIN V3 — Pelaporan Sampah dan Saluran Tersumbat
+Resik.In
 
-Website **dua halaman** untuk simulasi pelaporan masalah lingkungan: **tanpa database**, dengan Google Maps, foto bukti, tracking ID unik, dashboard admin grafik lokal otomatis, dan pembaruan hasil penanganan.
+Resik.In adalah prototipe website pelaporan sampah liar dan saluran tersumbat. Warga dapat mengirim laporan dengan nama, kategori masalah, judul, deskripsi, foto kondisi, alamat atau patokan, serta titik koordinat. Laporan kemudian dapat dipantau secara publik dan dikelola melalui Dashboard Admin.
 
-## PENTING: Memperbaiki pesan “Failed to fetch”
+Live demo: 
+https://bersihin.site.je/
 
-1. Pastikan alamat website memakai `http://localhost/`, **bukan Live Server** (`127.0.0.1:5500`) atau membuka file `index.html` langsung.
-2. Jika kamu masih memakai struktur dua folder, alamatnya:
-   - `http://localhost/BERSIHIN_V3_Pelaporan_Sampah_GoogleMaps_Admin/BERSIHIN_V3/index.html`
-   - `http://localhost/BERSIHIN_V3_Pelaporan_Sampah_GoogleMaps_Admin/BERSIHIN_V3/resolve_map.php?check=1`
-   Jika folder `BERSIHIN_V3` sudah dipindahkan langsung ke `htdocs`, gunakan `http://localhost/BERSIHIN_V3/resolve_map.php?check=1`.
-3. Klik **Tes koneksi PHP Google Maps** pada form. Jika muncul JSON dengan `"ok":true`, file PHP bisa dijangkau. Periksa juga `"curl":"aktif"`.
-4. Jika status cURL **tidak aktif**, buka `C:\xampp\php\php.ini` dan cari `;extension=curl`. Hapus `;` sehingga menjadi `extension=curl`, simpan, lalu stop/start Apache.
-5. Jika PHP berfungsi tetapi Google gagal, periksa internet dan sertifikat SSL PHP. Google juga dapat memblokir/menyembunyikan koordinat pada beberapa tautan pendek. Untuk tugas, masukkan koordinat yang disalin dari Google Maps melalui klik kanan pada pin.
+Latar Belakang
+Masalah sampah liar dan saluran air tersumbat membutuhkan informasi yang jelas agar dapat ditindaklanjuti. Laporan yang hanya disampaikan secara lisan atau melalui percakapan pribadi dapat kehilangan detail penting, seperti foto, lokasi, deskripsi, dan riwayat penanganan.
 
-*Catatan:* Pesan `Failed to fetch` berasal dari browser yang tidak berhasil menghubungi endpoint; berbeda dari pesan `Google Maps belum mengembalikan titik` yang berarti PHP sudah bekerja tetapi koordinat tidak dapat dibaca.
+Resik.In menawarkan satu alur pelaporan yang terdiri dari pengiriman laporan, verifikasi admin, pencatatan penerusan kepada pihak terkait, pembaruan status, dan dokumentasi hasil penanganan. Website ini dibuat sebagai prototipe untuk menunjukkan bagaimana proses pelaporan lingkungan dapat dibuat lebih terstruktur dan transparan.
 
-## 1. Struktur project
+Tujuan Proyek
+- Menyediakan formulir digital untuk melaporkan sampah liar dan saluran tersumbat.
+- Mengumpulkan informasi laporan berupa kategori, judul, deskripsi, foto, alamat, dan koordinat.
+- Menampilkan laporan publik beserta status terbarunya.
+- Membantu admin memverifikasi, menolak, meneruskan, dan memperbarui laporan.
+- Menyediakan riwayat aktivitas dan bukti foto sebelum serta sesudah penanganan.
+- Menunjukkan konsep partisipasi warga untuk mendukung SDG 11: Kota dan Permukiman yang Berkelanjutan.
 
-```text
-BERSIHIN_V3/
-├── index.html         # Website khusus warga
-├── admin.html         # Dashboard khusus admin
-├── style.css          # Style utama: bagian warga & komponen bersama
-├── enhancements.css   # Animasi, dashboard, Google Maps, dan responsive
-├── app.js             # Semua fitur, tiket, grafik, foto, tracking
-├── resolve_map.php    # Baca link pendek Google Maps lewat redirect (tanpa database)
-└── README.md          # Panduan ini
-```
+Fitur dan Modul
+Halaman warga — index.html
+- Beranda dengan penjelasan singkat tentang Resik.In
+- Statistik laporan: total laporan, perlu verifikasi, dalam proses, dan selesai.
+- Bagian “Cara Kerja” dengan empat tahap utama.
+- Daftar laporan publik.
+- Pencarian laporan berdasarkan kode, judul, lokasi, atau deskripsi.
+- Filter laporan berdasarkan status.
+  Filter laporan berdasarkan kategori:
+  - Sampah Liar
+  - Saluran Tersumbat
+- Detail laporan dalam modal.
+- Formulir pembuatan laporan baru.
+- Validasi nama, kategori, judul, deskripsi, foto, koordinat, dan alamat.
+- Unggah foto kondisi awal dengan format JPG, PNG, atau WebP.
+- Batas ukuran foto maksimal 8 MB sebelum diproses oleh browser.
+- Kompresi foto menggunakan Canvas API sebelum disimpan.
+- Penentuan lokasi menggunakan:
+  - Tombol GPS
+  - Link Google Maps
+  - Latitude dan longitude manual.
+- Pratinjau lokasi menggunakan Google Maps iframe.
+- Pelacakan laporan menggunakan kode otomatis, misalnya BRH-261122-A1B2C3D4.
+- Riwayat progres laporan.
+- Tampilan foto awal dan foto hasil penanganan.
+- Link untuk melihat titik dan rute laporan di Google Maps.
 
-Kode HTML, CSS, dan JS sudah ditata **ke bawah** supaya mudah dibaca dan diedit di VS Code. File PHP hanyalah utilitas pembaca link Maps — **tidak memakai database/MySQL**.
+Dashboard admin — admin.html
+- Ringkasan dashboard admin.
+- Kartu metrik:
+  - Total Laporan Masuk
+  - Menunggu Verifikasi
+  - Dalam Tindak Lanjut
+  - Sudah Selesai
+- Grafik tren laporan 7 hari terakhir.
+- Grafik distribusi status laporan.
+- Grafik klasifikasi jenis masalah.
+- Ringkasan kinerja penanganan.
+- Pencarian berdasarkan ID, lokasi, pelapor, atau judul.
+- Filter berdasarkan status.
+- Filter berdasarkan kategori.
+- Daftar tiket laporan.
+- Detail laporan dan informasi pelapor privat.
+- Tampilan koordinat dan lokasi laporan pada Google Maps.
+- Verifikasi dan persetujuan laporan.
+- Penolakan laporan dengan alasan.
+- Pencatatan penerusan laporan kepada pemerintah atau instansi terkait.
+- Pembaruan status menjadi “Dalam Penanganan”.
+- Pengiriman pesan atau pembaruan kepada pelapor.
+- Unggah foto hasil penanganan.
+- Penyelesaian laporan dengan keterangan dan foto hasil yang wajib tersedia.
+- Export data laporan dalam format JSON.
 
-## 2. Cara menjalankan agar link Google Maps pendek dapat dipakai
+Alur Status Laporan
+Plain Text
+Menunggu Verifikasi
+        ↓
+Terverifikasi
+        ↓
+Diteruskan
+        ↓
+Dalam Penanganan
+        ↓
+Selesai
 
-**Penting: jalankan lewat XAMPP dan PHP, bukan Live Server, jika ingin menempel link `maps.app.goo.gl/...`.**
+Laporan juga dapat berstatus Ditolak apabila tidak memenuhi persyaratan atau tidak dapat diverifikasi.
 
-1. Instal/buka **XAMPP**.
-2. Ekstrak ZIP, lalu pindahkan **folder `BERSIHIN_V3`** ke `C:\xampp\htdocs\BERSIHIN_V3`.
-3. Buka XAMPP Control Panel; klik **Start** pada **Apache**. **MySQL tidak perlu dinyalakan.**
-4. Di browser buka **`http://localhost/BERSIHIN_V3/index.html`** untuk warga.
-5. Untuk admin buka **`http://localhost/BERSIHIN_V3/admin.html`**.
-6. Kedua halaman perlu dibuka dari **alamat awal yang sama** (misalnya keduanya `localhost`, jangan satu `127.0.0.1`), agar data lokalnya sama.
-7. Pastikan **extension cURL** aktif di `C:\xampp\php\php.ini` (cari `extension=curl`) dan Apache bisa mengakses internet.
+Teknologi yang Digunakan
+- HTML5 untuk struktur halaman warga dan dashboard admin.
+- CSS3 untuk layout, responsive design, komponen UI, animasi, warna, dan tipografi.
+- JavaScript vanilla untuk validasi form, render laporan, filter, pencarian, dashboard, grafik, modal, tracking, dan interaksi admin.
+- Web Storage API / localStorage untuk menyimpan laporan pada browser.
+- FileReader API dan Canvas API untuk membaca, mengompres, dan menampilkan foto.
+- Geolocation API untuk membantu mengambil lokasi GPS pengguna.
+- Google Maps iframe untuk pratinjau lokasi serta tautan titik dan rute.
+- PHP 7.4+ atau lebih baru secara opsional melalui resolve_map.php untuk memproses link pendek Google Maps.
+- PHP cURL extension untuk mengikuti redirect link Google Maps apabila koordinat belum tersedia langsung pada URL.
+- Google Fonts dengan font DM Sans dan Manrope.
 
-Dengan **Live Server** (port 5500), HTML/CSS/JS tetap bekerja, termasuk **link Maps panjang**, koordinat manual, GPS, foto dan dashboard. **Link pendek membutuhkan endpoint PHP** yang tidak dieksekusi oleh Live Server.
+Struktur Repository
+Plain Text
+.
+├── index.html          # Halaman utama warga dan formulir laporan
+├── admin.html          # Dashboard admin
+├── app.js              # Logika aplikasi dan penyimpanan data browser
+├── style.css           # Style utama website
+├── enhancements.css    # Style tambahan, animasi, Google Maps, dan dashboard admin
+├── resolve_map.php     # Endpoint opsional untuk membaca link pendek Google Maps
+├── config.php          # Konfigurasi database lama / opsional
+├── tes_koneksi.php     # Script uji koneksi database lama / opsional
+└── README.md           # Dokumentasi proyek
 
-### Cara menggunakan link pendek dari Google Maps
+Persyaratan Sistem
+Untuk menjalankan frontend secara lokal:
+- Browser modern seperti Google Chrome, Microsoft Edge, atau Mozilla Firefox.
+- Web server lokal atau static server, misalnya VS Code Live Server, XAMPP, atau Apache.
+Untuk menggunakan pemrosesan link pendek Google Maps melalui resolve_map.php:
+- XAMPP atau Apache dengan PHP.
+- PHP cURL extension aktif.
+- Koneksi internet.
 
-1. Buka Google Maps di HP/browser, pilih **pin lokasi tertentu** (bukan sekadar menampilkan area peta).
-2. Klik **Bagikan** → **Salin link**. Contoh format: `https://maps.app.goo.gl/xxxxxxxx`.
-3. Tempel link pada form **Titik Lokasi Kejadian** dan klik **Gunakan Titik**.
-4. `resolve_map.php` mengikuti redirect Google dan mencoba membaca koordinat yang muncul pada tautan tujuan. Bila berhasil, **latitude, longitude dan Google Maps pratinjau otomatis berubah**.
-5. Jika Google tidak memberi koordinat pada URL redirect, website menampilkan pesan jelas; buka Google Maps, salin koordinat, kemudian masukkan latitude & longitude manual.
+Instalasi dan Konfigurasi
+Opsi 1 — Menjalankan sebagai frontend statis
+1. Clone repository:
+Bash
+git clone https://github.com/daffafaiqarganta-a11y/projectpemweb_resik.-in.git
+cd projectpemweb_resik.-in
+2. Buka folder project menggunakan VS Code.
+3. Jalankan index.html menggunakan ekstensi Live Server, atau buka file tersebut langsung melalui browser.
+4. Untuk membuka dashboard admin, akses:
+   Plain Text
+   admin.html
+   Pada mode frontend statis, fitur utama pelaporan dan dashboard dapat berjalan menggunakan localStorage. Namun, pemrosesan link pendek Google Maps melalui PHP tidak berjalan apabila website hanya dibuka dengan Live Server atau langsung dari file lokal.
 
-**Batasan Google:** link pendek tertentu dapat gagal dibaca karena respons Google berbeda-beda, pemblokiran jaringan, atau tidak mengandung koordinat; fitur ini tidak menjamin setiap link dapat diurai. Peta Google tanpa API key ditampilkan sebagai **iframe pratinjau**; klik untuk memilih pin di dalam iframe tidak bisa mengirim koordinat ke website. Gunakan tautan lokasi, GPS, atau koordinat manual.
+Opsi 2 — Menjalankan menggunakan XAMPP dan Apache
+1. Install XAMPP.
+2. Salin folder repository ke direktori htdocs, misalnya:
+   Plain Text
+   C:\xampp\htdocs\bersihin
+3. Jalankan Apache melalui XAMPP Control Panel.
+4. Buka halaman utama melalui:
+   Plain Text
+   http://localhost/bersihin/index.html
+5. Buka halaman pengecekan PHP berikut untuk memastikan endpoint aktif:
+   Plain Text
+   http://localhost/bersihin/resolve_map.php?check=1
+   Jika berhasil, endpoint akan memberikan respons JSON yang menandakan PHP Resik.In aktif.
+6. Untuk menggunakan link pendek Google Maps, pastikan ekstensi cURL aktif pada PHP. Pada XAMPP, buka php.ini, pastikan baris berikut tidak diawali tanda titik koma:
+   Plain Text
+   extension=curl
+7. Restart Apache setelah mengubah php.ini.
 
-Link ke Google Maps **Lihat Titik** / **Buka Rute** pada tiket membuka Google Maps sungguhan ke koordinat kejadian yang tersimpan, sehingga bisa dipakai navigasi.
+Cara Menjalankan Aplikasi
+Halaman warga
+1. Buka index.html.
+2. Klik Buat Laporan atau Laporkan Sekarang.
+3. Isi nama pelapor dan nomor WhatsApp jika diperlukan.
+4. Pilih jenis laporan.
+5. Masukkan judul serta keterangan kondisi.
+6. Unggah foto kondisi awal.
+7. Tentukan lokasi dengan GPS, link Google Maps, atau koordinat manual.
+8. Isi nama jalan atau patokan lokasi.
+9. Klik Kirim Laporan Sekarang.
+10. Simpan kode laporan yang muncul.
 
-## 3. Alur warga
+Melacak laporan
+1. Buka bagian Lacak Status Laporan.
+2. Masukkan kode laporan.
+3. Klik Lacak.
+4. Lihat status, riwayat aktivitas, lokasi, serta foto sebelum dan sesudah penanganan.
 
-1. Buka `index.html` → **Buat Laporan**.
-2. Isi nama, kategori (sampah liar/saluran tersumbat), judul, dan penjelasan.
-3. Unggah **foto kejadian** JPG/PNG/WebP maksimal **8 MB**. Browser mengecilkan foto sebelum menyimpan.
-4. Tempel Google Maps atau gunakan GPS/koordinat; tambahkan patokan jalan.
-5. Kirim dan simpan kode unik dengan pola `BRH-YYMMDD-XXXXXXXX`, contoh `BRH-261122-A1B2C3D4`.
-6. Pada **Lacak Laporan**, masukkan **kode masing-masing** untuk melihat status, riwayat pembaruan, pesan dari admin, serta foto **sebelum dan sesudah** bila penanganan sudah selesai.
-7. Daftar **Laporan Publik** menampilkan status dan foto, bukan identitas atau nomor telepon pelapor.
+Dashboard admin
+1. Buka admin.html atau klik Dashboard Admin dari halaman utama.
+2. Pilih tiket dari daftar laporan.
+3. Gunakan tombol sesuai status laporan:
+   - Verifikasi & ACC untuk laporan baru.
+   - Tolak Laporan untuk laporan yang tidak memenuhi syarat.
+   - Catat Penerusan ke Pemerintah untuk laporan terverifikasi.
+   - Mulai Penanganan untuk laporan yang sudah diteruskan.
+   - Selesai & Kirim Hasil ke Pelapor setelah mengunggah foto dan menulis keterangan hasil.
+   - Kirim Pembaruan untuk menambahkan catatan tanpa mengubah tahap utama.
+4. Gunakan pencarian, filter status, atau filter kategori untuk menemukan laporan tertentu.
+5. Gunakan Export JSON untuk mengunduh data laporan dari browser.
 
-**Setiap klik Kirim Laporan membuat kode baru** dengan bytes acak; 2 laporan yang dibuat berdekatan tetap mendapat kode yang berbeda.
+Penyimpanan Data dan Batasan Prototipe
+- Data laporan disimpan di localStorage browser dengan key bersihin_reports_v1.
+- Data tidak tersimpan pada server atau database dalam alur aplikasi aktif.
+- Data dapat terlihat antar-tab pada browser dan perangkat yang sama.
+- Data tidak otomatis tersinkronisasi ke browser atau perangkat lain.
+- Dashboard admin tidak menggunakan autentikasi login.
+- Penerusan kepada pemerintah atau instansi terkait hanya berupa pencatatan simulasi.
+- Website belum mengirim notifikasi otomatis kepada pemerintah, admin, petugas, atau pelapor.
+- Statistik awal dapat berisi data contoh.
+- Foto demo, koordinat demo, dan status demo bukan bukti penanganan sungguhan.
+- Fitur Google Maps menggunakan iframe dan link Google Maps; aplikasi tidak menggunakan Google Maps API key pada implementasi ini.
 
-## 4. Alur admin
+Privasi dan Keamanan
+- Nama dan nomor WhatsApp pelapor ditampilkan pada panel admin lokal, bukan pada daftar laporan publik.
+- Jangan mengunggah wajah, dokumen, nomor rumah, atau informasi pribadi orang lain tanpa izin.
+- Jangan memasukkan password, API key, atau kredensial database ke dalam repository public.
+- Sebelum deployment, periksa kembali file konfigurasi dan hapus kredensial yang tidak diperlukan.
 
-1. Buka `admin.html` (halaman **berbeda** dari halaman warga).
-2. Lihat grafik tren 7 hari, donat status, kategori, dan tingkat penyelesaian. Semua dihitung dari tiket aktual yang tersimpan di browser ini.
-3. Pilih salah satu tiket di **Kelola Laporan**.
-4. Klik **Verifikasi & ACC** (atau tolak, dengan alasan).
-5. Jika penanganan belum selesai, admin dapat **Catat Penerusan ke Pemerintah** dan **Mulai Penanganan**. Ini hanya **catatan simulasi**, bukan koneksi ke instansi nyata.
-6. **Jika sudah ditangani, admin dapat langsung dari status Terverifikasi / Diteruskan / Dalam Penanganan**:
-   - Unggah **foto hasil penanganan nyata dari admin**.
-   - Isi **keterangan hasil penanganan** (minimal 10 karakter).
-   - Klik **Selesai & Kirim Hasil ke Pelapor** dan konfirmasi.
-7. Status berubah **Selesai** dan bukti foto serta keterangan muncul di **Lacak Laporan** pada halaman warga untuk kode itu.
-8. Tombol **Kirim Pembaruan** dapat mencatat pesan tambahan. Tombol **Export JSON** menyimpan salinan data lokal.
+Catatan Konfigurasi Database
+File config.php dan tes_koneksi.php tersedia di repository sebagai konfigurasi atau uji koneksi PHP lama, tetapi alur frontend yang digunakan saat ini menyimpan data melalui localStorage dan tidak memanggil database.
+Jika fitur database ingin dikembangkan pada tahap berikutnya, kredensial database harus dipindahkan ke environment variable atau konfigurasi server yang tidak di-commit ke repository public.
 
-Semua perubahan segera memperbarui grafik dan laporan, termasuk antar-tab browser yang sama. **Tanpa server/database, tidak ada notifikasi WhatsApp, sinkronisasi antarperangkat, maupun pengiriman bukti otomatis ke pelapor yang membuka perangkat lain**.
-
-## 5. Foto asli dari Indonesia (contoh demo)
-
-Untuk menghormati lisensi dan menghindari foto Google/Pinterest tanpa izin, foto contoh menggunakan **Wikimedia Commons**. Ketiganya **berbeda** dan berasal dari Indonesia:
-
-| Penggunaan | Foto / lokasi | Fotografer | Lisensi & sumber |
-| --- | --- | --- | --- |
-| Tiket demo 1 | Sampah Tanjung Priok, Jakarta | Hullie | [CC BY-SA 2.5](https://commons.wikimedia.org/wiki/File:Waste_dump_-_Jakarta_-_Indonesia.jpg) |
-| Tiket demo 2 | Sampah di selokan Banjar, Bali | DayakSibiriak | [CC BY-SA 4.0](https://commons.wikimedia.org/wiki/File:Waste_in_rain_gutter_near_school_Bali.jpg) |
-| Tiket demo 3 | Sampah bantaran Kali Code, Yogyakarta | Crisco 1492 | [CC BY-SA 4.0](https://commons.wikimedia.org/wiki/File:Pile_of_garbage_along_the_Code_River,_as_viewed_from_near_Prawirodirjan_-_North.jpg) |
-| Visual beranda | Petugas kebersihan Kota Tua, Jakarta | Herusutimbul | [CC BY-SA 4.0](https://commons.wikimedia.org/wiki/File:Petugas_Kebersihan_Sungai_Kota_Tua_Jakarta.jpg) |
-| Bukti selesai tiket **demo** (ilustrasi, tidak terkait foto sebelumnya) | Kegiatan gotong royong membersihkan sungai | Stanley Teguh | [CC BY-SA 4.0](https://commons.wikimedia.org/wiki/File:Gotong_royong_membersihkan_sungai_dari_sampah._Gotong_royong_adalah_salah_satu_ciri_budaya_bangsa_Indonesia.jpg) |
-
-Foto ditampilkan lewat alamat gambar Wikimedia dan **butuh internet**. Hak foto milik pencipta; atribut kredit juga ditampilkan di footer `index.html` sebagai panel **Kredit foto**. Bila mengganti gambar, pastikan mempunyai izin dan menyertakan atribusi sesuai lisensi.
-
-**Sangat penting:** Titik peta pada *laporan demo* hanyalah perkiraan area contoh, **bukan titik persis foto**. Foto demo **tidak boleh** diklaim sebagai foto hasil penanganan laporan sungguhan. Untuk laporan baru, foto sebelum diunggah pelapor dan foto sesudah **wajib diunggah admin**.
-
-## 6. Penjelasan "real-time" tanpa database
-
-- Semua tiket, catatan, dan foto hasil disimpan dalam `localStorage` browser.
-- Grafik dan daftar diperbarui langsung setelah warga/admin melakukan tindakan.
-- Perubahan tersebar antar-tab pada **browser, perangkat, dan origin/localhost yang sama** dengan `storage` event.
-- Data tetap ada setelah refresh, kecuali jika penyimpanan situs dihapus atau kapasitasnya penuh.
-- Website **belum memiliki login admin yang aman** — pemisahan halaman hanyalah antarmuka demo. Jangan pakai untuk pengiriman data pribadi atau pelayanan masyarakat sungguhan.
-- Untuk aplikasi nyata: tambahkan backend PHP/Laravel atau Node, database MySQL/PostgreSQL, penyimpanan foto server, akun/peran, pemberitahuan resmi, dan integrasi instansi.
-
-## 7. Contoh kode tiket untuk demonstrasi
-
-- `BRH-DEMO01` — sampah Jakarta, status menunggu verifikasi.
-- `BRH-DEMO02` — selokan Bali, dalam penanganan.
-- `BRH-DEMO03` — sampah Yogyakarta, status selesai **hanya simulasi**.
-
-**Sumber kode:** edit file `index.html` untuk teks/section, `admin.html` untuk dashboard, `style.css` dan `enhancements.css` untuk warna/efek, `app.js` untuk fungsi dan contoh data, `resolve_map.php` untuk link Maps pendek.
+Tim Pengembang
+- Anggit Latifah Kinanti — H1D025127 — Creative Strategist & Designer
+- Daffa Faiq Arganta — H1D025135 — Full Stack Development & Deployment
+- Moh Faturrohman Cesar Purwoko — H1D025150 — Database Designer & Documentation
