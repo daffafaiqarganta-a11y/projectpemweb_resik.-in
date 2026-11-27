@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="id">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <meta content="#102f30" name="theme-color"/>
+  <title>
+   Dashboard Admin | BERSIHIN.
+  </title>
+  <link href="https://fonts.googleapis.com" rel="preconnect"/>
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&amp;family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+  <link href="style.css" rel="stylesheet"/>
+  <link href="enhancements.css" rel="stylesheet"/>
+  <script defer src="app.js?v=loginfix2"></script>
+  </script>
+ </head>
+ <body class="admin-body" data-page="admin">
+  <div class="admin-app">
+   <aside class="dashboard-sidebar" id="dashboardSidebar">
+    <a class="brand sidebar-brand" href="index.html">
+     <span class="brand-mark">
+      ✳
+     </span>
+     <span>
+      BERSIHIN
+      <span class="brand-period">
+       .
+      </span>
+     </span>
+    </a>
+    <div class="sidebar-section-title">
+     RUANG KERJA
+    </div>
+    <nav aria-label="Navigasi dashboard admin" class="sidebar-nav">
+     <a class="sidebar-item active" href="#dashboard">
+      <span>
+       ▦
+      </span>
+      Ringkasan Dashboard
+     </a>
+     <a class="sidebar-item" href="#kelola">
+      <span>
+       ▤
+      </span>
+      Kelola Laporan
+      <b id="sidebarPendingCount">
+       0
+      </b>
+     </a>
+     <a class="sidebar-item" href="#pantauan">
+      <span>
+       ⌁
+      </span>
+      Grafik Pemantauan
+     </a>
+     <a class="sidebar-item" href="index.html#jelajahi">
+      <span>
+       &nearrow;
+      </span>
+      Laporan Publik
+     </a>
+    </nav>
+    <div class="sidebar-bottom">
+     <div class="sidebar-live">
+      <i>
+      </i>
+      <span>
+       Sinkron antar-tab aktif
+       <small>
+        Perangkat &amp; browser yang sama
+       </small>
+      </span>
+     </div>
+     <div class="sidebar-demo">
+      🔒
+      <strong>
+       Mode prototipe
+      </strong>
+      <span>
+       Tanpa login maupun server. Jangan gunakan untuk layanan nyata.
+      </span>
+     </div>
+     <a class="sidebar-back" href="index.html">
+      &larr; Kembali ke Website Warga
+     </a>
+    </div>
+   </aside>
+   <div class="admin-main-wrapper">
+    <header class="dashboard-topbar">
+     <button aria-label="Buka menu admin" class="admin-menu-toggle" id="adminSidebarToggle" type="button">
+      ☰
+     </button>
+     <div class="breadcrumb">
+      BERSIHIN
+      <span>
+       /
+      </span>
+      <strong>
+       Admin Center
+      </strong>
+     </div>
+     <div class="topbar-right">
+      <span class="live-indicator">
+       <i>
+       </i>
+       LIVE LOKAL
+      </span>
+      <span class="topbar-date" id="currentDay">
+       Hari ini
+      </span>
+      <span class="topbar-avatar">
+       AD
+      </span>
+     </div>
+    </header>
+    <main class="dashboard-main" id="dashboard">
+     <div class="dashboard-heading">
+      <div>
+       <div class="eyebrow">
+        MONITORING LINGKUNGAN &middot; ADMIN CENTER
+       </div>
+       <h1>
+        Dashboard Pemantauan
+        <span>
+         Lingkungan
+        </span>
+       </h1>
+       <p>
+        Verifikasi laporan, catat koordinasi, lalu unggah hasil penanganan agar pelapor melihat bukti dan keterangan terbaru.
+       </p>
+      </div>
+      <div class="dashboard-actions">
+       <button class="btn btn-outline btn-sm" id="exportReports" type="button">
+        &darr; Export JSON
+       </button>
+       <a class="btn btn-primary btn-sm" href="index.html#lapor">
+        &nearrow; Halaman Pelapor
+       </a>
+      </div>
+     </div>
+     <div class="admin-notice dashboard-warning">
+      <span>
+       ⓘ
+      </span>
+      <p>
+       <strong>
+        Simulasi tanpa database:
+       </strong>
+       grafik diperbarui setiap perubahan data dan sinkron antar-tab pada browser yang sama. Tidak ada sinkronisasi antar-perangkat, pengiriman notifikasi, maupun koneksi dinas sungguhan.
+      </p>
+     </div>
+     <div class="dashboard-metrics">
+      <div class="metric-card total">
+       <div class="metric-card-icon">
+        ▤
+       </div>
+       <div>
+        <span>
+         Total Laporan Masuk
+        </span>
+        <strong id="adminTotal">
+         0
+        </strong>
+        <small>
+         Seluruh kategori
+        </small>
+       </div>
+       <em>
+        &nearrow;
+       </em>
+      </div>
+      <div class="metric-card pending">
+       <div class="metric-card-icon">
+        ◷
+       </div>
+       <div>
+        <span>
+         Menunggu Verifikasi
+        </span>
+        <strong id="adminPending">
+         0
+        </strong>
+        <small>
+         Memerlukan ACC
+        </small>
+       </div>
+       <em>
+        !
+       </em>
+      </div>
+      <div class="metric-card active">
+       <div class="metric-card-icon">
+        &orarr;
+       </div>
+       <div>
+        <span>
+         Dalam Tindak Lanjut
+        </span>
+        <strong id="adminActive">
+         0
+        </strong>
+        <small>
+         Terverifikasi / ditangani
+        </small>
+       </div>
+       <em>
+        &nearrow;
+       </em>
+      </div>
+      <div class="metric-card done">
+       <div class="metric-card-icon">
+        &checkmark;
+       </div>
+       <div>
+        <span>
+         Sudah Selesai
+        </span>
+        <strong id="adminDone">
+         0
+        </strong>
+        <small>
+         Dengan bukti foto
+        </small>
+       </div>
+       <em>
+        &checkmark;
+       </em>
+      </div>
+     </div>
+     <section aria-label="Grafik pemantauan" class="charts-layout" id="pantauan">
+      <div class="chart-card chart-wide">
+       <div class="chart-head">
+        <div>
+         <span class="chart-kicker">
+          LAPORAN MASUK
+         </span>
+         <h2>
+          Tren 7 Hari Terakhir
+         </h2>
+         <p>
+          Jumlah laporan yang masuk per hari
+         </p>
+        </div>
+        <span class="chart-live-chip">
+         <i>
+         </i>
+         Update otomatis
+        </span>
+       </div>
+       <div aria-label="Grafik tren laporan tujuh hari terakhir" class="trend-chart" id="trendChart" role="img">
+       </div>
+      </div>
+      <div class="chart-card">
+       <div class="chart-head">
+        <div>
+         <span class="chart-kicker">
+          DISTRIBUSI STATUS
+         </span>
+         <h2>
+          Progres Penanganan
+         </h2>
+         <p>
+          Komposisi status seluruh tiket
+         </p>
+        </div>
+       </div>
+       <div class="donut-wrap">
+        <div class="status-donut" id="statusDonut">
+         <div>
+          <strong id="donutTotal">
+           0
+          </strong>
+          <small>
+           laporan
+          </small>
+         </div>
+        </div>
+        <div class="donut-legend" id="donutLegend">
+        </div>
+       </div>
+      </div>
+      <div class="chart-card chart-wide">
+       <div class="chart-head">
+        <div>
+         <span class="chart-kicker">
+          KLASIFIKASI LAPORAN
+         </span>
+         <h2>
+          Jenis Permasalahan
+         </h2>
+         <p>
+          Perbandingan sampah liar dan saluran tersumbat
+         </p>
+        </div>
+       </div>
+       <div class="category-chart" id="categoryChart">
+       </div>
+      </div>
+      <div class="chart-card insight-card">
+       <span class="chart-kicker">
+        RINGKASAN OPERASIONAL
+       </span>
+       <h2>
+        Kinerja Penanganan
+       </h2>
+       <div class="insight-percent" id="resolutionRate">
+        0%
+       </div>
+       <p>
+        Persentase laporan yang sudah selesai.
+       </p>
+       <div class="insight-meter">
+        <span id="resolutionBar">
+        </span>
+       </div>
+       <div class="insight-rows">
+        <div>
+         <span>
+          Selesai
+         </span>
+         <strong id="insightDone">
+          0
+         </strong>
+        </div>
+        <div>
+         <span>
+          Ditolak
+         </span>
+         <strong id="insightRejected">
+          0
+         </strong>
+        </div>
+        <div>
+         <span>
+          Butuh verifikasi
+         </span>
+         <strong id="insightPending">
+          0
+         </strong>
+        </div>
+       </div>
+      </div>
+     </section>
+     <section class="dashboard-workspace" id="kelola">
+      <div class="workspace-heading">
+       <div>
+        <span class="chart-kicker">
+         PUSAT TINDAK LANJUT
+        </span>
+        <h2>
+         Kelola Laporan Warga
+        </h2>
+        <p>
+         Klik laporan untuk memverifikasi, meneruskan, memberi keterangan, dan mengirim foto hasil beserta keterangan ke pelapor.
+        </p>
+       </div>
+       <span class="workspace-count" id="adminListCountBadge">
+        0 tiket
+       </span>
+      </div>
+      <div class="admin-toolbar">
+       <div class="search-wrap admin-search">
+        <span>
+         &telrec;
+        </span>
+        <input id="adminSearch" placeholder="Cari ID, lokasi, pelapor, judul..." type="search"/>
+       </div>
+       <select id="adminStatusFilter">
+        <option value="all">
+         Semua status
+        </option>
+        <option value="submitted">
+         Menunggu ACC
+        </option>
+        <option value="verified">
+         Terverifikasi
+        </option>
+        <option value="forwarded">
+         Diteruskan
+        </option>
+        <option value="in_progress">
+         Dalam penanganan
+        </option>
+        <option value="completed">
+         Selesai
+        </option>
+        <option value="rejected">
+         Ditolak
+        </option>
+       </select>
+       <select id="adminCategoryFilter">
+        <option value="all">
+         Semua kategori
+        </option>
+        <option value="sampah">
+         Sampah Liar
+        </option>
+        <option value="saluran">
+         Saluran Tersumbat
+        </option>
+       </select>
+      </div>
+      <div class="admin-shell">
+       <div class="admin-list">
+        <div class="admin-list-title">
+         DAFTAR TIKET
+         <span id="adminListCount">
+          0
+         </span>
+        </div>
+        <div id="adminReportList">
+        </div>
+       </div>
+       <div class="admin-detail" id="adminDetail">
+        <div class="admin-placeholder">
+         <span>
+          ✳
+         </span>
+         <h3>
+          Pilih laporan untuk ditinjau
+         </h3>
+         <p>
+          Kelola status dan bukti penanganan di sini.
+         </p>
+        </div>
+       </div>
+      </div>
+     </section>
+     <div class="dashboard-footer">
+      &copy;
+      <span id="footerYear">
+      </span>
+      BERSIHIN. &middot; Prototype Admin Center
+      <span>
+       Data lokal / tidak terhubung ke pemerintah
+      </span>
+      <a href="index.html#kredit-foto">
+       Foto contoh: kredit &amp; lisensi &nearrow;
+      </a>
+     </div>
+    </main>
+   </div>
+  </div>
+  <div class="modal-backdrop" hidden="" id="modalBackdrop">
+   <div aria-labelledby="modalTitle" aria-modal="true" class="modal-dialog" role="dialog">
+    <button aria-label="Tutup" class="modal-close" id="closeModal" type="button">
+     &times;
+    </button>
+    <div id="modalContent">
+    </div>
+   </div>
+  </div>
+  <div aria-live="polite" class="toast" id="toast" role="status">
+  </div>
+ </body>
+</html>
+

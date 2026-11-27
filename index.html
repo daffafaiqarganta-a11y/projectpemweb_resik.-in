@@ -1,0 +1,859 @@
+<!DOCTYPE html>
+<html lang="id">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <meta content="#0a292c" name="theme-color"/>
+  <meta content="BERSIHIN &mdash; platform demo pelaporan sampah liar dan saluran tersumbat yang transparan dari warga hingga penanganan." name="description"/>
+  <title>
+   BERSIHIN &mdash; Laporkan. Pantau. Tuntas.
+  </title>
+  <link href="https://fonts.googleapis.com" rel="preconnect"/>
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&amp;family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+  <link href="style.css" rel="stylesheet"/>
+  <link href="enhancements.css" rel="stylesheet"/>
+  <script defer src="app.js?v=loginfix2"></script>
+  </script>
+ </head>
+ <body>
+  <div class="announce-bar">
+   <span class="announce-dot">
+   </span>
+   PROTOTIPE INTERAKTIF
+   <span class="announce-separator">
+    &bull;
+   </span>
+   Pelaporan lingkungan berbasis transparansi
+   <span class="announce-separator">
+    &bull;
+   </span>
+   Data demo lokal &middot; antar-tab otomatis
+  </div>
+  <header class="site-header">
+   <div class="container header-inner">
+    <a aria-label="BERSIHIN, kembali ke beranda" class="brand" href="#beranda">
+     <span aria-hidden="true" class="brand-mark">
+      <svg fill="none" viewbox="0 0 36 36">
+       <path d="M29.5 7C19 7 9 11.5 8 23.5c6.2 6.5 19.9 2.4 21.5-16.5Z" fill="#ACF2CB">
+       </path>
+       <path d="M9 29c3.7-7.6 8.3-12.7 15-17" stroke="#113D36" stroke-linecap="round" stroke-width="2.8">
+       </path>
+       <path d="M13 9 7 12l-1 7" stroke="#ACF2CB" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.6">
+       </path>
+      </svg>
+     </span>
+     <span>
+      BERSIHIN
+      <span class="brand-period">
+       .
+      </span>
+     </span>
+    </a>
+    <nav aria-label="Navigasi utama" class="main-nav" id="mainNav">
+     <a class="nav-link" href="#beranda">
+      Beranda
+     </a>
+     <a class="nav-link" href="#alur">
+      Cara Kerja
+     </a>
+     <a class="nav-link" href="#jelajahi">
+      Laporan Publik
+     </a>
+     <a class="nav-link" href="#lacak">
+      Lacak Laporan
+     </a>
+     <a class="nav-link" href="admin.html">
+      Dashboard Admin &nearrow;
+     </a>
+    </nav>
+    <div class="header-actions">
+     <a class="btn btn-primary btn-sm" href="#lapor">
+      + Buat Laporan
+     </a>
+     <button aria-expanded="false" aria-label="Buka menu" class="icon-button mobile-menu" id="menuToggle" type="button">
+      ☰
+     </button>
+    </div>
+   </div>
+  </header>
+  <main>
+   <section class="hero" id="beranda">
+    <div class="container hero-layout">
+     <div class="hero-copy">
+      <div class="eyebrow light">
+       <span class="eyebrow-icon">
+        ✦
+       </span>
+       GERAKAN LINGKUNGAN DIGITAL
+      </div>
+      <h1>
+       Satu laporan kecil,
+       <span class="hero-highlight">
+        dampak besar untuk kota.
+       </span>
+      </h1>
+      <p>
+       Melihat sampah liar atau saluran air tersumbat? Kirim foto, tandai lokasi, lalu pantau progresnya secara terbuka sampai benar-benar ditangani.
+      </p>
+      <div class="hero-ctas">
+       <a class="btn btn-lime" href="#lapor">
+        Laporkan Sekarang
+        <span aria-hidden="true">
+         &nearrow;
+        </span>
+       </a>
+       <a class="btn btn-hero-outline" href="#jelajahi">
+        Lihat Laporan Publik
+        <span aria-hidden="true">
+         &rarr;
+        </span>
+       </a>
+      </div>
+      <div class="hero-trust">
+       <span class="avatar-stack">
+        <span>
+         W
+        </span>
+        <span>
+         A
+        </span>
+        <span>
+         &checkmark;
+        </span>
+       </span>
+       <span>
+        <strong>
+         Warga &bull; Admin &bull; Pemerintah
+        </strong>
+        <br/>
+        Satu alur, progres terlihat semua.
+       </span>
+      </div>
+     </div>
+     <div aria-hidden="true" class="hero-visual">
+      <div class="visual-grid">
+      </div>
+      <div class="visual-location loc-a">
+       <span>
+        &target;
+       </span>
+       LAPORAN TERLACAK
+      </div>
+      <div class="visual-location loc-b">
+       <span class="ping-dot">
+       </span>
+       Diproses petugas
+      </div>
+      <div class="visual-card">
+       <div class="visual-card-head">
+        <div>
+         <span class="visual-overline">
+          PROTOTIPE PELAPORAN WARGA
+         </span>
+         <h3>
+          Laporan Lingkungan
+         </h3>
+        </div>
+        <span class="visual-icon">
+         &nearrow;
+        </span>
+       </div>
+       <div class="visual-illustration real-hero-photo">
+        <img alt="Foto petugas kebersihan memungut sampah di Sungai Kota Tua Jakarta" src="https://thumb.wikimedia.org/wikipedia/commons/thumb/a/af/Petugas_Kebersihan_Sungai_Kota_Tua_Jakarta.jpg/960px-Petugas_Kebersihan_Sungai_Kota_Tua_Jakarta.jpg"/>
+        <span class="stock-caption">
+         DOKUMENTASI INDONESIA &middot; ILUSTRASI
+        </span>
+       </div>
+       <div class="visual-status-row">
+        <div>
+         <strong>
+          Sampah di area selokan
+         </strong>
+         <small>
+          📍 Lokasi telah ditandai
+         </small>
+        </div>
+        <span class="mini-status">
+         <span class="pulse-dot">
+         </span>
+         Diproses
+        </span>
+       </div>
+       <div class="visual-progress">
+        <span>
+        </span>
+        <span>
+        </span>
+        <span>
+        </span>
+        <span class="muted">
+        </span>
+       </div>
+       <div class="visual-card-footer">
+        <span>
+         &checkmark; Foto &amp; lokasi tercatat
+        </span>
+        <span>
+         &nearrow; Status transparan
+        </span>
+       </div>
+      </div>
+      <div class="floating-badge">
+       ✳
+       <span>
+        Lebih mudah melapor.
+        <br/>
+        <strong>
+         Lebih jelas hasilnya.
+        </strong>
+       </span>
+      </div>
+     </div>
+    </div>
+    <div class="hero-bottom-line">
+    </div>
+   </section>
+   <section aria-label="Statistik laporan" class="stats-section">
+    <div class="container stats-grid">
+     <div class="stat-item">
+      <div class="stat-icon stat-green">
+       ▤
+      </div>
+      <div>
+       <strong id="statAll">
+        0
+       </strong>
+       <span>
+        Total Laporan
+       </span>
+      </div>
+     </div>
+     <div class="stat-item">
+      <div class="stat-icon stat-orange">
+       ◷
+      </div>
+      <div>
+       <strong id="statWaiting">
+        0
+       </strong>
+       <span>
+        Perlu Verifikasi
+       </span>
+      </div>
+     </div>
+     <div class="stat-item">
+      <div class="stat-icon stat-blue">
+       &orarr;
+      </div>
+      <div>
+       <strong id="statOngoing">
+        0
+       </strong>
+       <span>
+        Dalam Proses
+       </span>
+      </div>
+     </div>
+     <div class="stat-item">
+      <div class="stat-icon stat-done">
+       &checkmark;
+      </div>
+      <div>
+       <strong id="statCompleted">
+        0
+       </strong>
+       <span>
+        Sudah Selesai
+       </span>
+      </div>
+     </div>
+    </div>
+    <p class="stats-note">
+     * Termasuk data contoh. Statistik diambil dari browser ini, bukan laporan seluruh masyarakat.
+    </p>
+   </section>
+   <section class="section steps-section" id="alur">
+    <div class="container">
+     <div class="section-header centered">
+      <div class="eyebrow">
+       PROSES YANG TRANSPARAN
+      </div>
+      <h2>
+       Dari laporan sampai
+       <em>
+        tuntas.
+       </em>
+      </h2>
+      <p>
+       Setiap langkah memiliki catatan yang bisa dipantau warga tanpa perlu bertanya berulang kali.
+      </p>
+     </div>
+     <div class="steps-grid">
+      <div class="step-card">
+       <span class="step-no">
+        01
+       </span>
+       <div class="step-icon">
+        📷
+       </div>
+       <h3>
+        Warga melapor
+       </h3>
+       <p>
+        Unggah foto kondisi, pilih kategori, tandai titik peta, dan tulis keterangannya.
+       </p>
+       <div class="step-foot">
+        BUKTI &amp; LOKASI
+       </div>
+      </div>
+      <div class="step-card">
+       <span class="step-no">
+        02
+       </span>
+       <div class="step-icon">
+        🔎
+       </div>
+       <h3>
+        Admin verifikasi
+       </h3>
+       <p>
+        Admin mengecek kelengkapan laporan, lalu menyetujui atau menolak disertai alasan.
+       </p>
+       <div class="step-foot">
+        VERIFIKASI JELAS
+       </div>
+      </div>
+      <div class="step-card">
+       <span class="step-no">
+        03
+       </span>
+       <div class="step-icon">
+        🏛️
+       </div>
+       <h3>
+        Diteruskan ke instansi
+       </h3>
+       <p>
+        Admin mencatat penerusan kepada pihak pemerintah dan memperbarui status penanganan.
+       </p>
+       <div class="step-foot">
+        PROGRES TERLACAK
+       </div>
+      </div>
+      <div class="step-card">
+       <span class="step-no">
+        04
+       </span>
+       <div class="step-icon">
+        ✅
+       </div>
+       <h3>
+        Bukti selesai
+       </h3>
+       <p>
+        Admin mengunggah foto hasil penanganan dan memberikan keterangan kepada warga.
+       </p>
+       <div class="step-foot">
+        SEBELUM &amp; SESUDAH
+       </div>
+      </div>
+     </div>
+    </div>
+   </section>
+   <section class="section reports-section" id="jelajahi">
+    <div class="container">
+     <div class="section-header split">
+      <div>
+       <div class="eyebrow">
+        DASHBOARD PUBLIK
+       </div>
+       <h2>
+        Semua progres,
+        <em>
+         terlihat.
+        </em>
+       </h2>
+       <p>
+        Pantau laporan sekitar, status terbaru, dan bukti penanganannya. Identitas serta kontak pelapor tidak ditampilkan.
+       </p>
+      </div>
+      <a class="text-cta" href="#lapor">
+       Punya masalah serupa? Buat laporan &nearrow;
+      </a>
+     </div>
+     <div class="filter-panel">
+      <div class="search-wrap">
+       <span aria-hidden="true">
+        &telrec;
+       </span>
+       <input aria-label="Cari laporan" id="reportSearch" placeholder="Cari kode, judul, atau lokasi laporan..." type="search"/>
+      </div>
+      <div class="filter-selects">
+       <select aria-label="Filter status" id="statusFilter">
+        <option value="all">
+         Semua Status
+        </option>
+        <option value="submitted">
+         Menunggu Verifikasi
+        </option>
+        <option value="verified">
+         Terverifikasi
+        </option>
+        <option value="forwarded">
+         Diteruskan
+        </option>
+        <option value="in_progress">
+         Ditangani
+        </option>
+        <option value="completed">
+         Selesai
+        </option>
+        <option value="rejected">
+         Ditolak
+        </option>
+       </select>
+       <select aria-label="Filter jenis laporan" id="categoryFilter">
+        <option value="all">
+         Semua Kategori
+        </option>
+        <option value="sampah">
+         Sampah Liar
+        </option>
+        <option value="saluran">
+         Saluran Tersumbat
+        </option>
+       </select>
+      </div>
+     </div>
+     <div aria-live="polite" class="report-grid" id="publicReportsGrid">
+     </div>
+     <div class="empty-state" hidden="" id="reportsEmpty">
+      <div class="empty-icon">
+       &telrec;
+      </div>
+      <h3>
+       Belum ada laporan yang sesuai
+      </h3>
+      <p>
+       Coba ganti kata kunci atau filter yang digunakan.
+      </p>
+     </div>
+    </div>
+   </section>
+   <section class="section form-section" id="lapor">
+    <div class="container form-layout">
+     <div class="form-side">
+      <div class="eyebrow">
+       ASPIRASI WARGA
+      </div>
+      <h2>
+       Laporkan masalahnya.
+       <em>
+        Kami bantu catat.
+       </em>
+      </h2>
+      <p>
+       Ceritakan temuanmu sejelas mungkin agar admin lebih mudah memverifikasi dan meneruskannya.
+      </p>
+      <div class="side-tip">
+       <span>
+        💡
+       </span>
+       <div>
+        <strong>
+         Tips laporan yang baik
+        </strong>
+        <p>
+         Pastikan foto jelas, lokasi sesuai titik kejadian, dan deskripsi menjelaskan kondisi yang perlu ditangani.
+        </p>
+       </div>
+      </div>
+      <div class="side-tip">
+       <span>
+        🔒
+       </span>
+       <div>
+        <strong>
+         Privasi tetap terjaga
+        </strong>
+        <p>
+         Nama dan kontak hanya ditampilkan pada panel admin lokal, tidak di daftar laporan publik.
+        </p>
+       </div>
+      </div>
+      <div class="side-help">
+       Setelah mengirim, simpan
+       <strong>
+        kode laporan
+       </strong>
+       untuk melihat perkembangan di halaman pelacakan.
+      </div>
+     </div>
+     <div class="form-card">
+      <div class="form-title-row">
+       <div>
+        <span class="form-step-label">
+         FORMULIR LAPORAN
+        </span>
+        <h3>
+         Buat laporan baru
+        </h3>
+       </div>
+       <div class="form-decor">
+        ✎
+       </div>
+      </div>
+      <form id="reportForm" novalidate="">
+       <div class="form-block-label">
+        <span>
+         1
+        </span>
+        Informasi Pelapor
+       </div>
+       <div class="field-grid two">
+        <div class="field">
+         <label for="reporterName">
+          Nama pelapor
+          <b>
+           *
+          </b>
+         </label>
+         <input id="reporterName" maxlength="80" placeholder="Nama lengkap" required=""/>
+        </div>
+        <div class="field">
+         <label for="reporterPhone">
+          Nomor WhatsApp (opsional)
+         </label>
+         <input id="reporterPhone" maxlength="25" placeholder="Contoh: 08xxxxxxxxxx" type="tel"/>
+        </div>
+       </div>
+       <div class="form-block-label">
+        <span>
+         2
+        </span>
+        Detail Permasalahan
+       </div>
+       <div class="field-grid two">
+        <div class="field">
+         <label for="reportCategory">
+          Jenis laporan
+          <b>
+           *
+          </b>
+         </label>
+         <select id="reportCategory" required="">
+          <option value="">
+           Pilih kategori
+          </option>
+          <option value="sampah">
+           Sampah Liar
+          </option>
+          <option value="saluran">
+           Saluran Tersumbat
+          </option>
+         </select>
+        </div>
+        <div class="field">
+         <label for="reportTitle">
+          Judul laporan
+          <b>
+           *
+          </b>
+         </label>
+         <input id="reportTitle" maxlength="90" placeholder="Contoh: Tumpukan sampah di selokan" required=""/>
+        </div>
+       </div>
+       <div class="field">
+        <label for="reportDescription">
+         Keterangan kondisi
+         <b>
+          *
+         </b>
+        </label>
+        <textarea id="reportDescription" maxlength="1200" placeholder="Jelaskan apa yang terjadi, seberapa parah, dan kapan mulai terlihat..." required="" rows="4"></textarea>
+        <span class="input-helper">
+         Semakin detail keterangannya, semakin mudah ditindaklanjuti.
+        </span>
+       </div>
+       <div class="form-block-label">
+        <span>
+         3
+        </span>
+        Foto Bukti Lokasi
+       </div>
+       <div class="upload-zone" id="beforeDropzone">
+        <input accept="image/jpeg,image/png,image/webp,image/*" hidden="" id="reportPhoto" required="" type="file"/>
+        <div id="beforePlaceholder">
+         <div class="upload-icon">
+          &mapstoup;
+         </div>
+         <strong>
+          Klik atau tarik foto ke sini
+         </strong>
+         <p>
+          Unggah foto kondisi sampah atau saluran tersumbat
+         </p>
+         <small>
+          JPG, PNG, atau WebP &bull; maksimal 8 MB
+         </small>
+        </div>
+        <div class="upload-preview" hidden="" id="beforePreviewBox">
+         <img alt="Pratinjau foto bukti" id="beforePreview"/>
+         <span>
+          Ganti foto &orarr;
+         </span>
+        </div>
+       </div>
+       <div class="form-block-label">
+        <span>
+         4
+        </span>
+        Titik Lokasi Kejadian
+       </div>
+       <div class="map-controls">
+        <button class="btn btn-map" id="locateMe" type="button">
+         &target; Gunakan GPS Saya
+        </button>
+        <span id="mapHint">
+         Masukkan koordinat atau tempel tautan titik dari Google Maps.
+        </span>
+       </div>
+       <div class="google-map-wrap">
+        <iframe class="google-map-embed" id="googleReportMap" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://maps.google.com/maps?q=Purwokerto%2C%20Jawa%20Tengah&amp;z=13&amp;output=embed" title="Google Maps untuk pratinjau titik laporan">
+        </iframe>
+        <div class="google-map-corner">
+         Google Maps &middot; pratinjau lokasi
+        </div>
+       </div>
+       <div class="maps-picker-card">
+        <div class="maps-picker-top">
+         <strong>
+          📍 Tandai lokasi dengan Google Maps
+         </strong>
+         <small>
+          Buka Google Maps, bagikan lokasi, lalu tempel link pendek maupun panjang di sini.
+         </small>
+        </div>
+        <div class="maps-link-control">
+         <input aria-label="Tautan Google Maps dari titik lokasi" id="googleMapsLink" placeholder="Tempel link Google Maps, termasuk https://maps.app.goo.gl/..." type="url"/>
+         <button class="btn btn-outline btn-sm" id="useMapsLink" type="button">
+          Gunakan Titik
+         </button>
+        </div>
+        <div aria-live="polite" class="maps-link-feedback" id="mapsLinkFeedback" role="status">
+        </div>
+        <a class="maps-hint-link" href="./resolve_map.php?check=1" target="_blank" rel="noopener noreferrer" style="display:inline-block;margin-bottom:8px">
+         Tes koneksi PHP Google Maps ↗
+        </a>
+        <a class="maps-hint-link" href="https://www.google.com/maps" id="openGoogleMapsPicker" rel="noopener noreferrer" target="_blank">
+         Buka Google Maps untuk cari lokasi &nearrow;
+        </a>
+        <small class="maps-picker-note">
+         <strong>
+          Link pendek maps.app.goo.gl bisa dipakai melalui XAMPP + PHP.
+         </strong>
+         Jika memakai Live Server, gunakan link panjang atau koordinat manual.
+        </small>
+       </div>
+       <div class="coords-row">
+        <div class="field">
+         <label for="reportLat">
+          Latitude
+          <b>
+           *
+          </b>
+         </label>
+         <input id="reportLat" max="90" min="-90" placeholder="-7.42" required="" step="any" type="number"/>
+        </div>
+        <div class="field">
+         <label for="reportLng">
+          Longitude
+          <b>
+           *
+          </b>
+         </label>
+         <input id="reportLng" max="180" min="-180" placeholder="109.23" required="" step="any" type="number"/>
+        </div>
+       </div>
+       <div class="field">
+        <label for="reportAddress">
+         Nama jalan / patokan lokasi
+         <b>
+          *
+         </b>
+        </label>
+        <input id="reportAddress" maxlength="180" placeholder="Contoh: Jl. Kampus, depan jembatan kecil" required=""/>
+       </div>
+       <a class="maps-selected-link" hidden="" href="https://www.google.com/maps" id="selectedMapLink" rel="noopener noreferrer" target="_blank">
+        🧭 Lihat titik terpilih &amp; rute di Google Maps &nearrow;
+       </a>
+       <div class="form-warning">
+        <span>
+         ⓘ
+        </span>
+        Ini website prototipe. Pengiriman tidak benar-benar terhubung ke kantor pemerintah atau server online.
+       </div>
+       <button class="btn btn-primary btn-full" id="submitReport" type="submit">
+        Kirim Laporan Sekarang
+        <span>
+         &nearrow;
+        </span>
+       </button>
+      </form>
+     </div>
+    </div>
+   </section>
+   <section class="section track-section" id="lacak">
+    <div class="container track-layout">
+     <div>
+      <div class="eyebrow">
+       LACAK STATUS LAPORAN
+      </div>
+      <h2>
+       Sudah melapor?
+       <em>
+        Cek progresnya.
+       </em>
+      </h2>
+      <p>
+       Masukkan kode laporan yang kamu terima. Semua perubahan status, catatan admin, hingga foto hasil penanganan bisa dilihat di sini.
+      </p>
+      <div class="track-small">
+       *Real-time dalam browser yang sama setelah tindakan admin; bukan sinkronisasi antarpengguna.
+      </div>
+     </div>
+     <div class="track-search-card">
+      <span class="track-label">
+       KODE LAPORAN
+      </span>
+      <div class="track-input">
+       <input aria-label="Masukkan kode laporan" id="trackingId" placeholder="Contoh: BRH-261122-A1B2C3D4"/>
+       <button class="btn btn-primary" id="trackBtn" type="button">
+        Lacak &rarr;
+       </button>
+      </div>
+      <p>
+       Kode otomatis muncul ketika laporan berhasil dibuat.
+      </p>
+     </div>
+    </div>
+    <div class="container">
+     <div aria-live="polite" id="trackingResult">
+     </div>
+    </div>
+   </section>
+  </main>
+  <footer class="footer">
+   <div class="container footer-grid">
+    <div>
+     <a class="brand footer-brand" href="#beranda">
+      <span class="brand-mark">
+       ✳
+      </span>
+      <span>
+       BERSIHIN
+       <span class="brand-period">
+        .
+       </span>
+      </span>
+     </a>
+     <p>
+      Dari kepedulian kecil, menuju perubahan lingkungan yang nyata dan terukur.
+     </p>
+    </div>
+    <div class="footer-links">
+     <a href="#alur">
+      Cara Kerja
+     </a>
+     <a href="#jelajahi">
+      Laporan Publik
+     </a>
+     <a href="#lapor">
+      Buat Laporan
+     </a>
+     <a href="admin.html">
+      Dashboard Admin
+     </a>
+    </div>
+    <div class="footer-disclaimer">
+     <strong>
+      Catatan prototipe
+     </strong>
+     <p>
+      Semua data disimpan secara lokal di perangkat. Belum tersambung ke instansi, server, atau database.
+     </p>
+    </div>
+   </div>
+   <div class="container footer-bottom">
+    <span>
+     &copy;
+     <span id="footerYear">
+     </span>
+     BERSIHIN. &mdash; Prototype Frontend
+    </span>
+    <span>
+     Dibangun untuk lingkungan yang lebih baik 🌱
+    </span>
+   </div>
+   <details class="photo-credits" id="kredit-foto">
+    <summary>
+     Kredit foto dokumentasi Indonesia (buka sumber &amp; lisensi)
+    </summary>
+    <p>
+     Seluruh foto ilustrasi berasal dari Wikimedia Commons, bukan laporan atau bukti lapangan sungguhan. Tampilan foto dipotong menyesuaikan kartu (object-fit), tanpa mengubah file sumber. Hak cipta tetap pada fotografer.
+    </p>
+    <ul>
+     <li>
+      <a href="https://commons.wikimedia.org/wiki/File:Waste_dump_-_Jakarta_-_Indonesia.jpg" rel="noopener noreferrer" target="_blank">
+       Tumpukan sampah Tanjung Priok &mdash; Hullie (CC BY-SA 2.5)
+      </a>
+     </li>
+     <li>
+      <a href="https://commons.wikimedia.org/wiki/File:Waste_in_rain_gutter_near_school_Bali.jpg" rel="noopener noreferrer" target="_blank">
+       Selokan di Bali &mdash; DayakSibiriak (CC BY-SA 4.0)
+      </a>
+     </li>
+     <li>
+      <a href="https://commons.wikimedia.org/wiki/File:Pile_of_garbage_along_the_Code_River,_as_viewed_from_near_Prawirodirjan_-_North.jpg" rel="noopener noreferrer" target="_blank">
+       Kali Code Yogyakarta &mdash; Crisco 1492 (CC BY-SA 4.0)
+      </a>
+     </li>
+     <li>
+      <a href="https://commons.wikimedia.org/wiki/File:Petugas_Kebersihan_Sungai_Kota_Tua_Jakarta.jpg" rel="noopener noreferrer" target="_blank">
+       Petugas kebersihan Kota Tua Jakarta &mdash; Herusutimbul (CC BY-SA 4.0)
+      </a>
+     </li>
+     <li>
+      <a href="https://commons.wikimedia.org/wiki/File:Gotong_royong_membersihkan_sungai_dari_sampah._Gotong_royong_adalah_salah_satu_ciri_budaya_bangsa_Indonesia.jpg" rel="noopener noreferrer" target="_blank">
+       Kegiatan gotong royong &mdash; Stanley Teguh (CC BY-SA 4.0)
+      </a>
+     </li>
+    </ul>
+    <p>
+     Lisensi:
+     <a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="noopener noreferrer" target="_blank">
+      CC BY-SA 4.0
+     </a>
+     dan
+     <a href="https://creativecommons.org/licenses/by-sa/2.5/" rel="noopener noreferrer" target="_blank">
+      CC BY-SA 2.5
+     </a>
+     . Foto tidak dapat dianggap sebagai dokumentasi lokasi tiket demo. Lihat README untuk keterangan lengkap.
+    </p>
+   </details>
+  </footer>
+  <div class="modal-backdrop" hidden="" id="modalBackdrop">
+   <div aria-labelledby="modalTitle" aria-modal="true" class="modal-dialog" role="dialog">
+    <button aria-label="Tutup dialog" class="modal-close" id="closeModal" type="button">
+     &times;
+    </button>
+    <div id="modalContent">
+    </div>
+   </div>
+  </div>
+  <div aria-live="polite" class="toast" id="toast" role="status">
+  </div>
+ </body>
+</html>
+
